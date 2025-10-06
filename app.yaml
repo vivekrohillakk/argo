@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-argo-app              # <-- you can change this name
+  namespace: argocd              # Argo CD always watches apps from this namespace
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/vivekrohillakk/argo.git
+    path: .
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:                   # Optional: enables auto-sync
+      prune: true                # Remove resources not in Git
+      selfHeal: true             # Reapply drifted resources
+
