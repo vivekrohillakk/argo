@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: argocd-pod
+  labels:
+    app: argocd
+spec:
+  containers:
+  - name: argo-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
